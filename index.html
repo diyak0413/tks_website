@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Mesh | Revolutionizing Connectivity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'quantum-blue': '#00f0ff',
+                        'quantum-purple': '#b400ff',
+                        'quantum-green': '#00ff9d',
+                        'dark-space': '#0a0a1a',
+                        'deep-space': '#050510'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050510;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .glow-text-blue {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+        }
+        
+        .glow-text-purple {
+            text-shadow: 0 0 10px rgba(180, 0, 255, 0.7);
+        }
+        
+        .glow-text-green {
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.7);
+        }
+        
+        .glow-box-blue {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+        
+        .glow-box-purple {
+            box-shadow: 0 0 15px rgba(180, 0, 255, 0.5);
+        }
+        
+        .glow-box-green {
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00f0ff, #b400ff);
+            opacity: 0.6;
+            z-index: -1;
+        }
+        
+        .quantum-node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #00f0ff;
+            box-shadow: 0 0 15px #00f0ff;
+            z-index: -1;
+        }
+        
+        .quantum-connection {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.5), transparent);
+            z-index: -1;
+            transform-origin: 0 0;
+        }
+        
+        .quantum-pulse {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 240, 255, 0.5);
+            z-index: -1;
+            animation: pulse 3s ease-out infinite;
+        }
+        
+        .quantum-wave {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(180, 0, 255, 0.3);
+            z-index: -1;
+            animation: wave 6s linear infinite;
+        }
+        
+        .section-divider {
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .section-divider svg {
+            height: 100%;
+            width: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #00f0ff;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        
+        @keyframes wave {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(2); opacity: 0.5; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #00f0ff; }
+            50% { box-shadow: 0 0 20px #00f0ff; }
+            100% { box-shadow: 0 0 5px #00f0ff; }
+        }
+        
+        .quantum-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+        }
+        
+        .quantum-sphere {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.2), transparent 70%);
+            z-index: -1;
+        }
+        
+        .data-stream {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, #00f0ff, transparent);
+            z-index: -1;
+            animation: stream 4s linear infinite;
+        }
+        
+        @keyframes stream {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+        
+        .quantum-tunnel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(180, 0, 255, 0.05) 0%, transparent 70%);
+            z-index: -2;
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- Quantum Grid Background -->
+    <div class="quantum-grid"></div>
+    <div class="quantum-tunnel"></div>
+    
+    <!-- Particle Background -->
+    <div id="particles"></div>
+    <div id="quantum-mesh"></div>
+    <div id="quantum-spheres"></div>
+    <div id="data-streams"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold glow-text-blue">QUANTUM <span class="glow-text-purple">MESH</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link px-3 py-2 text-sm font-medium text-white hover:text-quantum-blue">Home</a>
+                        <a href="#about" class="nav-link px-3 py-2 text-sm font-medium text-white hover:text-quantum-purple">About</a>
+                        <a href="#features" class="nav-link px-3 py-2 text-sm font-medium text-white hover:text-quantum-green">Features</a>
+                        <a href="#how-it-works" class="nav-link px-3 py-2 text-sm font-medium text-white hover:text-quantum-blue">How It Works</a>
+                        <a href="#contact" class="nav-link px-3 py-2 text-sm font-medium text-white hover:text-quantum-purple">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="glow-text-blue">Revolutionizing</span> 
+                    <span class="glow-text-purple">connectivity</span> 
+                    <span class="block mt-4 glow-text-green">through quantum-powered mesh networks</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12">
+                    Experience the future of decentralized, ultra-secure, and lightning-fast network infrastructure powered by quantum principles.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contact" class="px-8 py-4 bg-gradient-to-r from-quantum-blue to-quantum-purple text-white font-semibold rounded-full glow-box-blue hover:opacity-90 transition duration-300 transform hover:scale-105">
+                        Get Started
+                    </a>
+                    <a href="#how-it-works" class="px-8 py-4 border-2 border-quantum-green text-white font-semibold rounded-full glow-box-green hover:bg-quantum-green hover:bg-opacity-10 transition duration-300 transform hover:scale-105">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interactive Quantum Mesh Visualization -->
+        <div id="hero-mesh" class="absolute inset-0 overflow-hidden z-0"></div>
+        
+        <div class="absolute bottom-0 left-0 right-0 section-divider">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="#00f0ff"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="#00f0ff"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#00f0ff"></path>
+            </svg>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gradient-to-b from-[#0a0a1a] to-[#0a0a2a] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 glow-text-purple">About Quantum Mesh</h2>
+                <div class="w-24 h-1 bg-quantum-purple mx-auto mb-6 glow-box-purple"></div>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    Quantum Mesh is not just another networking solution - it's a paradigm shift in how data moves through the digital universe.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="relative z-10 p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm">
+                        <h3 class="text-2xl font-bold mb-4 text-quantum-blue">The Quantum Difference</h3>
+                        <p class="text-gray-300 mb-6">
+                            Traditional networks rely on centralized infrastructure that creates bottlenecks and vulnerabilities. Quantum Mesh leverages quantum entanglement principles to create a self-healing, decentralized web of connections that's faster, more secure, and infinitely scalable.
+                        </p>
+                        <p class="text-gray-300 mb-6">
+                            Our proprietary quantum routing algorithms ensure your data takes the most efficient path possible, while quantum encryption guarantees your information remains secure even against future quantum computing threats.
+                        </p>
+                        <div class="flex items-center">
+                            <div class="mr-4 text-quantum-green text-2xl">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Quantum Entanglement</h4>
+                                <p class="text-gray-400">Instantaneous connections regardless of distance</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -left-6 w-32 h-32 rounded-full bg-quantum-purple opacity-20 animate-pulse-slow"></div>
+                    <div class="absolute -bottom-6 -right-6 w-40 h-40 rounded-full bg-quantum-blue opacity-20 animate-pulse-slow"></div>
+                </div>
+                
+                <div class="relative">
+                    <div class="relative z-10 p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm">
+                        <h3 class="text-2xl font-bold mb-4 text-quantum-green">Why It Matters</h3>
+                        <p class="text-gray-300 mb-6">
+                            In an increasingly connected world, the limitations of current networking technology are becoming apparent. Quantum Mesh solves these fundamental problems:
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-quantum-blue mr-3 mt-1">•</span>
+                                <span class="text-gray-300">Eliminates latency for real-time applications</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-quantum-purple mr-3 mt-1">•</span>
+                                <span class="text-gray-300">Provides unhackable quantum encryption</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-quantum-green mr-3 mt-1">•</span>
+                                <span class="text-gray-300">Scales effortlessly with growing demand</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-quantum-blue mr-3 mt-1">•</span>
+                                <span class="text-gray-300">Reduces infrastructure costs by up to 70%</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-quantum-purple mr-3 mt-1">•</span>
+                                <span class="text-gray-300">Future-proof against quantum computing threats</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-quantum-green opacity-20 animate-pulse-slow"></div>
+                    <div class="absolute -bottom-8 -left-8 w-20 h-20 rounded-full bg-quantum-purple opacity-20 animate-pulse-slow"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quantum Network Visualization -->
+        <div id="about-network" class="absolute inset-0 overflow-hidden z-0"></div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-[#0a0a2a] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 glow-text-green">Key Features</h2>
+                <div class="w-24 h-1 bg-quantum-green mx-auto mb-6 glow-box-green"></div>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    Quantum Mesh delivers capabilities that were previously unimaginable in networking technology
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-quantum-blue transition duration-300">
+                    <div class="text-quantum-blue text-4xl mb-6">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Quantum Speed</h3>
+                    <p class="text-gray-300">
+                        Experience near-instantaneous data transfer speeds by leveraging quantum entanglement principles, reducing latency to near-zero levels.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-quantum-purple transition duration-300">
+                    <div class="text-quantum-purple text-4xl mb-6">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Unbreakable Security</h3>
+                    <p class="text-gray-300">
+                        Quantum key distribution ensures your data remains secure even against future quantum computing attacks.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-quantum-green transition duration-300">
+                    <div class="text-quantum-green text-4xl mb-6">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Infinite Scalability</h3>
+                    <p class="text-gray-300">
+                        Our mesh architecture grows organically with your needs, eliminating traditional scaling bottlenecks.
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-quantum-blue transition duration-300">
+                    <div class="text-quantum-blue text-4xl mb-6">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Self-Healing Network</h3>
+                    <p class="text-gray-300">
+                        Automatic rerouting ensures uninterrupted service even when multiple nodes fail simultaneously.
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-quantum-purple transition duration-300">
+                    <div class="text-quantum-purple text-4xl mb-6">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Cost Efficiency</h3>
+                    <p class="text-gray-300">
+                        Reduce infrastructure costs by up to 70% compared to traditional networking solutions.
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-quantum-green transition duration-300">
+                    <div class="text-quantum-green text-4xl mb-6">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Future-Proof</h3>
+                    <p class="text-gray-300">
+                        Designed to evolve with emerging quantum technologies, protecting your investment long-term.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quantum Data Streams -->
+        <div id="feature-streams" class="absolute inset-0 overflow-hidden z-0"></div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gradient-to-b from-[#0a0a2a] to-[#0a0a1a] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 glow-text-blue">How Quantum Mesh Works</h2>
+                <div class="w-24 h-1 bg-quantum-blue mx-auto mb-6 glow-box-blue"></div>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    A simple breakdown of our revolutionary technology
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <!-- Step 1 -->
+                <div class="relative">
+                    <div class="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-quantum-blue to-quantum-purple glow-box-blue"></div>
+                    <div class="pl-8">
+                        <div class="text-4xl font-bold text-quantum-blue mb-2">01</div>
+                        <h3 class="text-2xl font-bold mb-4 text-white">Quantum Node Deployment</h3>
+                        <p class="text-gray-300">
+                            Compact quantum nodes are installed at strategic locations, forming the foundation of your mesh network.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="relative">
+                    <div class="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-quantum-purple to-quantum-green glow-box-purple"></div>
+                    <div class="pl-8">
+                        <div class="text-4xl font-bold text-quantum-purple mb-2">02</div>
+                        <h3 class="text-2xl font-bold mb-4 text-white">Entanglement Establishment</h3>
+                        <p class="text-gray-300">
+                            Nodes create quantum-entangled pairs, enabling instantaneous communication regardless of distance.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="relative">
+                    <div class="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-quantum-green to-quantum-blue glow-box-green"></div>
+                    <div class="pl-8">
+                        <div class="text-4xl font-bold text-quantum-green mb-2">03</div>
+                        <h3 class="text-2xl font-bold mb-4 text-white">Quantum Routing</h3>
+                        <p class="text-gray-300">
+                            Our proprietary algorithms calculate optimal paths through the quantum mesh in real-time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 4 -->
+                <div class="relative">
+                    <div class="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-quantum-blue to-quantum-purple glow-box-blue"></div>
+                    <div class="pl-8">
+                        <div class="text-4xl font-bold text-quantum-blue mb-2">04</div>
+                        <h3 class="text-2xl font-bold mb-4 text-white">Data Transmission</h3>
+                        <p class="text-gray-300">
+                            Information travels through the quantum channels with zero latency and perfect security.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="relative">
+                    <div class="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-quantum-purple to-quantum-green glow-box-purple"></div>
+                    <div class="pl-8">
+                        <div class="text-4xl font-bold text-quantum-purple mb-2">05</div>
+                        <h3 class="text-2xl font-bold mb-4 text-white">Continuous Optimization</h3>
+                        <p class="text-gray-300">
+                            The network constantly evolves, adding new nodes and optimizing connections automatically.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 6 -->
+                <div class="relative">
+                    <div class="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-quantum-green to-quantum-blue glow-box-green"></div>
+                    <div class="pl-8">
+                        <div class="text-4xl font-bold text-quantum-green mb-2">06</div>
+                        <h3 class="text-2xl font-bold mb-4 text-white">Future Scaling</h3>
+                        <p class="text-gray-300">
+                            As quantum technology advances, your network gains capabilities without hardware upgrades.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-20 relative">
+                <div class="max-w-4xl mx-auto bg-black bg-opacity-50 rounded-xl border border-gray-800 p-8 backdrop-blur-sm">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                            <div class="w-48 h-48 rounded-full bg-gradient-to-br from-quantum-blue via-quantum-purple to-quantum-green flex items-center justify-center animate-float">
+                                <i class="fas fa-network-wired text-6xl text-white"></i>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 md:pl-8">
+                            <h3 class="text-2xl font-bold mb-4 text-white">Visualizing the Quantum Mesh</h3>
+                            <p class="text-gray-300 mb-6">
+                                Imagine a constantly evolving web of connections where each node is quantum-entangled with multiple others. Data flows through this web like lightning, always finding the most efficient path while remaining completely secure.
+                            </p>
+                            <a href="#contact" class="inline-block px-6 py-3 bg-gradient-to-r from-quantum-blue to-quantum-purple text-white font-semibold rounded-full glow-box-blue hover:opacity-90 transition duration-300">
+                                See It In Action
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -top-10 -left-10 w-32 h-32 rounded-full bg-quantum-blue opacity-20 animate-pulse-slow"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-quantum-purple opacity-20 animate-pulse-slow"></div>
+            </div>
+        </div>
+        
+        <!-- Interactive Quantum Mesh Demo -->
+        <div id="interactive-mesh" class="absolute inset-0 overflow-hidden z-0"></div>
+    </section>
+    
+    <!-- Call to Action Section -->
+    <section id="contact" class="py-20 bg-[#0a0a1a] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 glow-text-purple">Join the Quantum Revolution</h2>
+                <div class="w-24 h-1 bg-quantum-purple mx-auto mb-6 glow-box-purple"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Be among the first to experience the future of networking technology
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm">
+                        <h3 class="text-2xl font-bold mb-6 text-white">Get Started Today</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-quantum-blue text-white">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-quantum-purple text-white">
+                            </div>
+                            <div>
+                                <label for="interest" class="block text-sm font-medium text-gray-300 mb-1">Interest</label>
+                                <select id="interest" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-quantum-green text-white">
+                                    <option>Enterprise Solution</option>
+                                    <option>Government Application</option>
+                                    <option>Research Collaboration</option>
+                                    <option>Investor Inquiry</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-quantum-blue text-white"></textarea>
+                            </div>
+                            <button type="submit" class="w-full px-6 py-4 bg-gradient-to-r from-quantum-purple to-quantum-blue text-white font-semibold rounded-lg glow-box-purple hover:opacity-90 transition duration-300">
+                                Submit Application
+                            </button>
+                        </form>
+                    </div>
+                    <div class="absolute -top-6 -left-6 w-32 h-32 rounded-full bg-quantum-purple opacity-20 animate-pulse-slow"></div>
+                    <div class="absolute -bottom-6 -right-6 w-40 h-40 rounded-full bg-quantum-blue opacity-20 animate-pulse-slow"></div>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm">
+                        <h3 class="text-2xl font-bold mb-4 text-white">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="text-quantum-blue text-xl mt-1 mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-white">Headquarters</h4>
+                                    <p class="text-gray-400">Quantum Plaza, 2500 Tech Valley Drive, Silicon Nexus</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-quantum-purple text-xl mt-1 mr-4">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-white">Phone</h4>
+                                    <p class="text-gray-400">+1 (555) QMESH-00</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-quantum-green text-xl mt-1 mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-white">Email</h4>
+                                    <p class="text-gray-400">contact@quantummesh.io</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8 bg-black bg-opacity-50 rounded-xl border border-gray-800 backdrop-blur-sm">
+                        <h3 class="text-2xl font-bold mb-4 text-white">Partnership Opportunities</h3>
+                        <p class="text-gray-300 mb-6">
+                            We're actively seeking strategic partners across industries to help shape the future of quantum networking.
+                        </p>
+                        <a href="#" class="inline-block px-6 py-3 border-2 border-quantum-green text-white font-semibold rounded-full glow-box-green hover:bg-quantum-green hover:bg-opacity-10 transition duration-300">
+                            Explore Partnerships
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quantum Connection Visualization -->
+        <div id="contact-network" class="absolute inset-0 overflow-hidden z-0"></div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-black py-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 glow-text-blue">QUANTUM <span class="glow-text-purple">MESH</span></h3>
+                    <p class="text-gray-400">
+                        Revolutionizing connectivity through quantum-powered mesh networks.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-quantum-blue transition">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-quantum-purple transition">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-quantum-green transition">Press</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-quantum-blue transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-quantum-purple transition">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-quantum-green transition">API Reference</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-quantum-blue transition">Whitepapers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-quantum-purple transition">Case Studies</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-quantum-blue text-xl transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-quantum-purple text-xl transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-quantum-green text-xl transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-quantum-blue text-xl transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800">
+                <div class="md:flex md:items-center md:justify-between">
+                    <p class="text-gray-400 text-sm">
+                        &copy; 2023 Quantum Mesh Technologies. All rights reserved.
+                    </p>
+                    <div class="mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm mr-6">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm mr-6">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-quantum-blue opacity-10 animate-pulse-slow"></div>
+    </footer>
+    
+    <script>
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 50 : 100;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 2px and 5px
+                const size = Math.random() * 3 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Create quantum spheres
+        function createQuantumSpheres() {
+            const container = document.getElementById('quantum-spheres');
+            const sphereCount = window.innerWidth < 768 ? 3 : 6;
+            
+            for (let i = 0; i < sphereCount; i++) {
+                const sphere = document.createElement('div');
+                sphere.className = 'quantum-sphere';
+                
+                // Random size between 100px and 300px
+                const size = Math.random() * 200 + 100;
+                sphere.style.width = `${size}px`;
+                sphere.style.height = `${size}px`;
+                
+                // Random position
+                sphere.style.left = `${Math.random() * 100}%`;
+                sphere.style.top = `${Math.random() * 100}%`;
+                
+                container.appendChild(sphere);
+            }
+        }
+        
+        // Create data streams
+        function createDataStreams() {
+            const container = document.getElementById('data-streams');
+            const streamCount = window.innerWidth < 768 ? 5 : 10;
+            
+            for (let i = 0; i < streamCount; i++) {
+                const stream = document.createElement('div');
+                stream.className = 'data-stream';
+                
+                // Random width between 100px and 300px
+                const width = Math.random() * 200 + 100;
+                stream.style.width = `${width}px`;
+                
+                // Random position and delay
+                stream.style.top = `${Math.random() * 100}%`;
+                stream.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(stream);
+            }
+        }
+        
+        // Create complex quantum mesh network
+        function createQuantumMesh() {
+            const container = document.getElementById('quantum-mesh');
+            const nodeCount = window.innerWidth < 768 ? 40 : 80;
+            const nodes = [];
+            
+            // Create nodes
+            for (let i = 0; i < nodeCount; i++) {
+                const node = document.createElement('div');
+                node.className = 'quantum-node';
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                node.style.left = `${left}%`;
+                node.style.top = `${top}%`;
+                
+                // Random glow color
+                const colors = ['#00f0ff', '#b400ff', '#00ff9d'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                node.style.backgroundColor = color;
+                node.style.boxShadow = `0 0 15px ${color}`;
+                
+                // Create pulse effect
+                const pulse = document.createElement('div');
+                pulse.className = 'quantum-pulse';
+                pulse.style.left = `${left}%`;
+                pulse.style.top = `${top}%`;
+                pulse.style.borderColor = color;
+                pulse.style.animationDelay = `${Math.random() * 3}s`;
+                
+                container.appendChild(node);
+                container.appendChild(pulse);
+                nodes.push({ element: node, x: left, y: top });
+                
+                // Create wave effect for some nodes
+                if (Math.random() > 0.7) {
+                    const wave = document.createElement('div');
+                    wave.className = 'quantum-wave';
+                    wave.style.left = `${left}%`;
+                    wave.style.top = `${top}%`;
+                    wave.style.borderColor = color;
+                    wave.style.animationDelay = `${Math.random() * 2}s`;
+                    container.appendChild(wave);
+                }
+            }
+            
+            // Create connections between nodes
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const node1 = nodes[i];
+                    const node2 = nodes[j];
+                    
+                    // Calculate distance
+                    const dx = node2.x - node1.x;
+                    const dy = node2.y - node1.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Connect if nodes are close enough
+                    if (distance < 20) {
+                        const line = document.createElement('div');
+                        line.className = 'quantum-connection';
+                        
+                        // Position and rotate the line
+                        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                        const length = distance * (window.innerWidth / 100);
+                        
+                        line.style.width = `${length}px`;
+                        line.style.left = `${node1.x}%`;
+                        line.style.top = `${node1.y}%`;
+                        line.style.transform = `rotate(${angle}deg)`;
+                        line.style.transformOrigin = '0 0';
+                        
+                        // Random opacity
+                        line.style.opacity = Math.random() * 0.5 + 0.1;
+                        
+                        container.appendChild(line);
+                        
+                        // Create animated data packets along the connection
+                        if (Math.random() > 0.7) {
+                            createDataPacket(container, node1, node2, length, angle);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Create animated data packets that travel between nodes
+        function createDataPacket(container, node1, node2, length, angle) {
+            const packet = document.createElement('div');
+            packet.className = 'particle';
+            packet.style.width = '4px';
+            packet.style.height = '4px';
+            packet.style.left = `${node1.x}%`;
+            packet.style.top = `${node1.y}%`;
+            packet.style.transform = `rotate(${angle}deg)`;
+            packet.style.transformOrigin = '0 0';
+            packet.style.zIndex = '-1';
+            
+            container.appendChild(packet);
+            
+            let progress = 0;
+            const speed = Math.random() * 0.002 + 0.001;
+            const color = node1.element.style.backgroundColor;
+            packet.style.backgroundColor = color;
+            
+            function animatePacket() {
+                progress += speed;
+                if (progress > 1) progress = 0;
+                
+                packet.style.left = `${node1.x + (node2.x - node1.x) * progress}%`;
+                packet.style.top = `${node1.y + (node2.y - node1.y) * progress}%`;
+                
+                requestAnimationFrame(animatePacket);
+            }
+            
+            animatePacket();
+        }
+        
+        // Create specialized mesh for hero section
+        function createHeroMesh() {
+            const container = document.getElementById('hero-mesh');
+            const nodeCount = window.innerWidth < 768 ? 30 : 60;
+            const nodes = [];
+            
+            // Create central hub node
+            const hub = {
+                element: document.createElement('div'),
+                x: 50,
+                y: 50
+            };
+            hub.element.className = 'quantum-node';
+            hub.element.style.width = '20px';
+            hub.element.style.height = '20px';
+            hub.element.style.left = '50%';
+            hub.element.style.top = '50%';
+            hub.element.style.boxShadow = '0 0 30px #00f0ff';
+            container.appendChild(hub.element);
+            
+            // Create pulse for hub
+            const hubPulse = document.createElement('div');
+            hubPulse.className = 'quantum-pulse';
+            hubPulse.style.left = '50%';
+            hubPulse.style.top = '50%';
+            hubPulse.style.width = '20px';
+            hubPulse.style.height = '20px';
+            hubPulse.style.borderColor = '#00f0ff';
+            container.appendChild(hubPulse);
+            
+            // Create nodes radiating from hub
+            for (let i = 0; i < nodeCount; i++) {
+                const angle = (i / nodeCount) * Math.PI * 2;
+                const distance = 20 + Math.random() * 30;
+                const x = 50 + Math.cos(angle) * distance;
+                const y = 50 + Math.sin(angle) * distance;
+                
+                const node = document.createElement('div');
+                node.className = 'quantum-node';
+                node.style.left = `${x}%`;
+                node.style.top = `${y}%`;
+                
+                // Vary node colors
+                const colors = ['#00f0ff', '#b400ff', '#00ff9d'];
+                const color = colors[i % 3];
+                node.style.backgroundColor = color;
+                node.style.boxShadow = `0 0 15px ${color}`;
+                
+                container.appendChild(node);
+                nodes.push({ element: node, x, y });
+                
+                // Connect to hub
+                const line = document.createElement('div');
+                line.className = 'quantum-connection';
+                
+                const dx = x - 50;
+                const dy = y - 50;
+                const lineLength = Math.sqrt(dx * dx + dy * dy) * (window.innerWidth / 100);
+                const lineAngle = Math.atan2(dy, dx) * 180 / Math.PI;
+                
+                line.style.width = `${lineLength}px`;
+                line.style.left = '50%';
+                line.style.top = '50%';
+                line.style.transform = `rotate(${lineAngle}deg)`;
+                line.style.transformOrigin = '0 0';
+                line.style.opacity = '0.3';
+                line.style.background = `linear-gradient(90deg, ${color}, transparent)`;
+                
+                container.appendChild(line);
+                
+                // Create data packets traveling to hub
+                if (i % 4 === 0) {
+                    createDataPacket(container, nodes[i], hub, lineLength, lineAngle);
+                }
+                
+                // Connect some nodes to each other
+                if (i > 0 && Math.random() > 0.7) {
+                    const prevNode = nodes[i-1];
+                    const dx2 = x - prevNode.x;
+                    const dy2 = y - prevNode.y;
+                    const distance = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+                    
+                    if (distance < 25) {
+                        const connLine = document.createElement('div');
+                        connLine.className = 'quantum-connection';
+                        
+                        const connLength = distance * (window.innerWidth / 100);
+                        const connAngle = Math.atan2(dy2, dx2) * 180 / Math.PI;
+                        
+                        connLine.style.width = `${connLength}px`;
+                        connLine.style.left = `${prevNode.x}%`;
+                        connLine.style.top = `${prevNode.y}%`;
+                        connLine.style.transform = `rotate(${connAngle}deg)`;
+                        connLine.style.transformOrigin = '0 0';
+                        connLine.style.opacity = '0.2';
+                        connLine.style.background = `linear-gradient(90deg, ${color}, ${prevNode.element.style.backgroundColor})`;
+                        
+                        container.appendChild(connLine);
+                        
+                        // Create data packets between peripheral nodes
+                        if (Math.random() > 0.5) {
+                            createDataPacket(container, nodes[i-1], nodes[i], connLength, connAngle);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Create network visualization for about section
+        function createAboutNetwork() {
+            const container = document.getElementById('about-network');
+            const nodeCount = window.innerWidth < 768 ? 50 : 100;
+            const nodes = [];
+            
+            // Create clusters of nodes
+            const clusterCount = 5;
+            const clusters = [];
+            
+            for (let c = 0; c < clusterCount; c++) {
+                const centerX = 10 + Math.random() * 80;
+                const centerY = 10 + Math.random() * 80;
+                const clusterSize = 10 + Math.random() * 15;
+                const clusterNodes = [];
+                
+                clusters.push({
+                    centerX,
+                    centerY,
+                    nodes: clusterNodes
+                });
+                
+                // Create nodes in cluster
+                const nodesInCluster = Math.floor(nodeCount / clusterCount);
+                for (let i = 0; i < nodesInCluster; i++) {
+                    const angle = (i / nodesInCluster) * Math.PI * 2;
+                    const distance = Math.random() * clusterSize;
+                    const x = centerX + Math.cos(angle) * distance;
+                    const y = centerY + Math.sin(angle) * distance;
+                    
+                    const node = document.createElement('div');
+                    node.className = 'quantum-node';
+                    node.style.left = `${x}%`;
+                    node.style.top = `${y}%`;
+                    
+                    // Cluster-specific color
+                    const colors = ['#00f0ff', '#b400ff', '#00ff9d', '#ff00e6', '#00ffcc'];
+                    const color = colors[c % colors.length];
+                    node.style.backgroundColor = color;
+                    node.style.boxShadow = `0 0 15px ${color}`;
+                    
+                    container.appendChild(node);
+                    clusterNodes.push({ element: node, x, y });
+                    
+                    // Create pulse effect
+                    if (Math.random() > 0.8) {
+                        const pulse = document.createElement('div');
+                        pulse.className = 'quantum-pulse';
+                        pulse.style.left = `${x}%`;
+                        pulse.style.top = `${y}%`;
+                        pulse.style.borderColor = color;
+                        pulse.style.animationDelay = `${Math.random() * 3}s`;
+                        container.appendChild(pulse);
+                    }
+                }
+            }
+            
+            // Connect nodes within clusters
+            clusters.forEach(cluster => {
+                const nodes = cluster.nodes;
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const node1 = nodes[i];
+                        const node2 = nodes[j];
+                        
+                        const dx = node2.x - node1.x;
+                        const dy = node2.y - node1.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 15) {
+                            const line = document.createElement('div');
+                            line.className = 'quantum-connection';
+                            
+                            const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                            const length = distance * (window.innerWidth / 100);
+                            
+                            line.style.width = `${length}px`;
+                            line.style.left = `${node1.x}%`;
+                            line.style.top = `${node1.y}%`;
+                            line.style.transform = `rotate(${angle}deg)`;
+                            line.style.transformOrigin = '0 0';
+                            line.style.opacity = '0.2';
+                            line.style.background = `linear-gradient(90deg, ${node1.element.style.backgroundColor}, ${node2.element.style.backgroundColor})`;
+                            
+                            container.appendChild(line);
+                            
+                            // Create data packets
+                            if (Math.random() > 0.7) {
+                                createDataPacket(container, node1, node2, length, angle);
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Connect clusters to each other
+            for (let i = 0; i < clusters.length; i++) {
+                for (let j = i + 1; j < clusters.length; j++) {
+                    const cluster1 = clusters[i];
+                    const cluster2 = clusters[j];
+                    
+                    // Connect some clusters
+                    if (Math.random() > 0.5) {
+                        // Connect central nodes
+                        const node1 = {
+                            x: cluster1.centerX,
+                            y: cluster1.centerY,
+                            element: { style: { backgroundColor: '#ffffff' } }
+                        };
+                        const node2 = {
+                            x: cluster2.centerX,
+                            y: cluster2.centerY,
+                            element: { style: { backgroundColor: '#ffffff' } }
+                        };
+                        
+                        const dx = node2.x - node1.x;
+                        const dy = node2.y - node1.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                        const length = distance * (window.innerWidth / 100);
+                        
+                        const line = document.createElement('div');
+                        line.className = 'quantum-connection';
+                        line.style.width = `${length}px`;
+                        line.style.left = `${node1.x}%`;
+                        line.style.top = `${node1.y}%`;
+                        line.style.transform = `rotate(${angle}deg)`;
+                        line.style.transformOrigin = '0 0';
+                        line.style.opacity = '0.1';
+                        line.style.background = 'linear-gradient(90deg, #ffffff, #ffffff)';
+                        
+                        container.appendChild(line);
+                        
+                        // Create high-speed data packets between clusters
+                        if (Math.random() > 0.3) {
+                            createDataPacket(container, node1, node2, length, angle);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Create feature streams visualization
+        function createFeatureStreams() {
+            const container = document.getElementById('feature-streams');
+            const streamCount = window.innerWidth < 768 ? 15 : 30;
+            
+            for (let i = 0; i < streamCount; i++) {
+                const stream = document.createElement('div');
+                stream.className = 'data-stream';
+                
+                // Random width between 100px and 400px
+                const width = Math.random() * 300 + 100;
+                stream.style.width = `${width}px`;
+                
+                // Random position and delay
+                stream.style.top = `${Math.random() * 100}%`;
+                stream.style.animationDelay = `${Math.random() * 5}s`;
+                
+                // Random color
+                const colors = ['#00f0ff', '#b400ff', '#00ff9d'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                stream.style.background = `linear-gradient(90deg, ${color}, transparent)`;
+                
+                container.appendChild(stream);
+            }
+        }
+        
+        // Create interactive mesh for how it works section
+        function createInteractiveMesh() {
+            const container = document.getElementById('interactive-mesh');
+            const nodeCount = window.innerWidth < 768 ? 40 : 80;
+            const nodes = [];
+            
+            // Create nodes that respond to mouse movement
+            for (let i = 0; i < nodeCount; i++) {
+                const node = document.createElement('div');
+                node.className = 'quantum-node';
+                
+                // Random initial position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                node.style.left = `${left}%`;
+                node.style.top = `${top}%`;
+                
+                // Random color
+                const colors = ['#00f0ff', '#b400ff', '#00ff9d'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                node.style.backgroundColor = color;
+                node.style.boxShadow = `0 0 15px ${color}`;
+                
+                container.appendChild(node);
+                nodes.push({ element: node, x: left, y: top, targetX: left, targetY: top });
+                
+                // Create pulse effect
+                if (Math.random() > 0.7) {
+                    const pulse = document.createElement('div');
+                    pulse.className = 'quantum-pulse';
+                    pulse.style.left = `${left}%`;
+                    pulse.style.top = `${top}%`;
+                    pulse.style.borderColor = color;
+                    pulse.style.animationDelay = `${Math.random() * 3}s`;
+                    container.appendChild(pulse);
+                }
+            }
+            
+            // Create connections
+            const connections = [];
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const node1 = nodes[i];
+                    const node2 = nodes[j];
+                    
+                    const dx = node2.x - node1.x;
+                    const dy = node2.y - node1.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 20) {
+                        const line = document.createElement('div');
+                        line.className = 'quantum-connection';
+                        
+                        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                        const length = distance * (window.innerWidth / 100);
+                        
+                        line.style.width = `${length}px`;
+                        line.style.left = `${node1.x}%`;
+                        line.style.top = `${node1.y}%`;
+                        line.style.transform = `rotate(${angle}deg)`;
+                        line.style.transformOrigin = '0 0';
+                        line.style.opacity = '0.2';
+                        line.style.background = `linear-gradient(90deg, ${node1.element.style.backgroundColor}, ${node2.element.style.backgroundColor})`;
+                        
+                        container.appendChild(line);
+                        connections.push({ line, node1, node2 });
+                        
+                        // Create data packets
+                        if (Math.random() > 0.5) {
+                            createDataPacket(container, node1, node2, length, angle);
+                        }
+                    }
+                }
+            }
+            
+            // Make nodes interactive
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
+                const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                nodes.forEach(node => {
+                    const dx = mouseX - node.x;
+                    const dy = mouseY - node.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Nodes are repelled by mouse
+                    if (distance < 30) {
+                        const force = 30 - distance;
+                        const angle = Math.atan2(dy, dx);
+                        
+                        node.targetX = node.x - Math.cos(angle) * force * 0.1;
+                        node.targetY = node.y - Math.sin(angle) * force * 0.1;
+                    } else {
+                        // Return to original position
+                        node.targetX += (node.x - node.targetX) * 0.05;
+                        node.targetY += (node.y - node.targetY) * 0.05;
+                    }
+                });
+            });
+            
+            // Animation loop to update positions
+            function animate() {
+                nodes.forEach(node => {
+                    node.x += (node.targetX - node.x) * 0.1;
+                    node.y += (node.targetY - node.y) * 0.1;
+                    
+                    node.element.style.left = `${node.x}%`;
+                    node.element.style.top = `${node.y}%`;
+                });
+                
+                // Update connections
+                connections.forEach(conn => {
+                    const dx = conn.node2.x - conn.node1.x;
+                    const dy = conn.node2.y - conn.node1.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                    const length = distance * (window.innerWidth / 100);
+                    
+                    conn.line.style.width = `${length}px`;
+                    conn.line.style.left = `${conn.node1.x}%`;
+                    conn.line.style.top = `${conn.node1.y}%`;
+                    conn.line.style.transform = `rotate(${angle}deg)`;
+                    
+                    // Fade out connections that are too long
+                    if (distance > 25) {
+                        conn.line.style.opacity = '0';
+                    } else {
+                        conn.line.style.opacity = `${0.3 - (distance / 25) * 0.2}`;
+                    }
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+        
+        // Create contact network visualization
+        function createContactNetwork() {
+            const container = document.getElementById('contact-network');
+            const nodeCount = window.innerWidth < 768 ? 30 : 60;
+            const nodes = [];
+            
+            // Create central contact node
+            const contactNode = {
+                element: document.createElement('div'),
+                x: 50,
+                y: 50
+            };
+            contactNode.element.className = 'quantum-node';
+            contactNode.element.style.width = '25px';
+            contactNode.element.style.height = '25px';
+            contactNode.element.style.left = '50%';
+            contactNode.element.style.top = '50%';
+            contactNode.element.style.boxShadow = '0 0 30px #b400ff';
+            contactNode.element.style.backgroundColor = '#b400ff';
+            container.appendChild(contactNode.element);
+            
+            // Create pulse for contact node
+            const contactPulse = document.createElement('div');
+            contactPulse.className = 'quantum-pulse';
+            contactPulse.style.left = '50%';
+            contactPulse.style.top = '50%';
+            contactPulse.style.width = '25px';
+            contactPulse.style.height = '25px';
+            contactPulse.style.borderColor = '#b400ff';
+            container.appendChild(contactPulse);
+            
+            // Create surrounding nodes
+            for (let i = 0; i < nodeCount; i++) {
+                const angle = (i / nodeCount) * Math.PI * 2;
+                const distance = 15 + Math.random() * 35;
+                const x = 50 + Math.cos(angle) * distance;
+                const y = 50 + Math.sin(angle) * distance;
+                
+                const node = document.createElement('div');
+                node.className = 'quantum-node';
+                node.style.left = `${x}%`;
+                node.style.top = `${y}%`;
+                
+                // Color based on distance
+                const colorValue = Math.min(1, distance / 50);
+                const r = Math.floor(180 * colorValue);
+                const g = Math.floor(255 * (1 - colorValue));
+                const b = 255;
+                const color = `rgb(${r}, ${g}, ${b})`;
+                
+                node.style.backgroundColor = color;
+                node.style.boxShadow = `0 0 15px ${color}`;
+                
+                container.appendChild(node);
+                nodes.push({ element: node, x, y });
+                
+                // Connect to central node
+                const line = document.createElement('div');
+                line.className = 'quantum-connection';
+                
+                const dx = x - 50;
+                const dy = y - 50;
+                const lineLength = Math.sqrt(dx * dx + dy * dy) * (window.innerWidth / 100);
+                const lineAngle = Math.atan2(dy, dx) * 180 / Math.PI;
+                
+                line.style.width = `${lineLength}px`;
+                line.style.left = '50%';
+                line.style.top = '50%';
+                line.style.transform = `rotate(${lineAngle}deg)`;
+                line.style.transformOrigin = '0 0';
+                line.style.opacity = '0.3';
+                line.style.background = `linear-gradient(90deg, ${color}, #b400ff)`;
+                
+                container.appendChild(line);
+                
+                // Create data packets traveling to central node
+                if (i % 3 === 0) {
+                    createDataPacket(container, nodes[i], contactNode, lineLength, lineAngle);
+                }
+            }
+            
+            // Connect some peripheral nodes to each other
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const node1 = nodes[i];
+                    const node2 = nodes[j];
+                    
+                    const dx = node2.x - node1.x;
+                    const dy = node2.y - node1.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 20 && Math.random() > 0.7) {
+                        const line = document.createElement('div');
+                        line.className = 'quantum-connection';
+                        
+                        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                        const length = distance * (window.innerWidth / 100);
+                        
+                        line.style.width = `${length}px`;
+                        line.style.left = `${node1.x}%`;
+                        line.style.top = `${node1.y}%`;
+                        line.style.transform = `rotate(${angle}deg)`;
+                        line.style.transformOrigin = '0 0';
+                        line.style.opacity = '0.2';
+                        line.style.background = `linear-gradient(90deg, ${node1.element.style.backgroundColor}, ${node2.element.style.backgroundColor})`;
+                        
+                        container.appendChild(line);
+                        
+                        // Create data packets between peripheral nodes
+                        if (Math.random() > 0.5) {
+                            createDataPacket(container, node1, node2, length, angle);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Initialize on load
+        window.addEventListener('load', () => {
+            createParticles();
+            createQuantumSpheres();
+            createDataStreams();
+            createQuantumMesh();
+            createHeroMesh();
+            createAboutNetwork();
+            createFeatureStreams();
+            createInteractiveMesh();
+            createContactNetwork();
+        });
+        
+        // Recreate visuals on resize (for responsiveness)
+        window.addEventListener('resize', () => {
+            const containers = [
+                'particles', 'quantum-mesh', 'quantum-spheres', 'data-streams',
+                'hero-mesh', 'about-network', 'feature-streams', 'interactive-mesh', 'contact-network'
+            ];
+            
+            containers.forEach(id => {
+                const container = document.getElementById(id);
+                if (container) {
+                    while (container.firstChild) {
+                        container.removeChild(container.firstChild);
+                    }
+                }
+            });
+            
+            createParticles();
+            createQuantumSpheres();
+            createDataStreams();
+            createQuantumMesh();
+            createHeroMesh();
+            createAboutNetwork();
+            createFeatureStreams();
+            createInteractiveMesh();
+            createContactNetwork();
+        });
+    </script>
+</body>
+</html>
